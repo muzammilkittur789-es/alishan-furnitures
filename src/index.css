@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #FAF8F5;
+    color: #1C1917;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F0E8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C7B79D;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9E7E6A;
+}
+
+/* Hide scrollbar for clean horizontal tab lists */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============================================================
+   MOBILE-FIRST SCROLL ENTRANCE ANIMATIONS
+   Play automatically when scrolling into viewport
+   ============================================================ */
+
+/* 1. Fade & Rise into view (for cards, headings, buttons) */
+.reveal-fade-up {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-fade-up.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 2. Soft Scale & Pop into view (for circular category icons) */
+.reveal-scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-scale-in.is-revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 3. Horizontal Slide & Reveal */
+.reveal-slide-right {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-slide-right.is-revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Accessible reduced-motion fallback */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-fade-up,
+  .reveal-scale-in,
+  .reveal-slide-right {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Clean, premium studio furniture card */
+.furniture-card {
+  position: relative;
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .furniture-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px -6px rgba(44, 30, 22, 0.08);
+  }
+}
